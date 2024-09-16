@@ -71,6 +71,24 @@ public class Complex {
         return this;
     }
 
+    public Complex minus(Complex b) {
+        re -= b.re;
+        im -= b.im;
+        return this;
+    }
+
+    public Complex divide(Complex b) {
+        if (b.lengthSQ() == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
+        Complex a = this;
+        double real = (a.re * b.re + a.im * b.im) / b.lengthSQ();
+        double imag = (a.im * b.re - a.re * b.im) / b.lengthSQ();
+        re = real;
+        im = imag;
+        return this;
+    }
+
     /**
      * Multiply operation.
      * @param  b multiplier
